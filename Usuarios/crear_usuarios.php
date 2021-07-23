@@ -2,8 +2,20 @@
 
 include "../conexion.php";
 $postdata = file_get_contents("php://input"); 
- 
-$sql_query = "SELECT  public.ft_insertar_usuario('".$postdata."')";
+$request = json_decode($postdata);
+$imagen = $request->url_foto;
+
+$idImagen = uniqid();
+$folderPath = "./imagenes/";
+$image_parts = explode(";base64,", $imagen);
+$image_type_aux = explode("image/", $image_parts[0]);
+$image_type = $image_type_aux[1];
+$image_base64 = base64_decode($image_parts[1]);
+$file = $folderPath . $idImagen . '.png';
+file_put_contents($file, $image_base64);   
+$ruta = "http://167.99.158.191/Api_pedidos_ProyectoFinal/imagenes/". $idImagen . '.png';
+
+$sql_query = "SELECT  public.ft_insertar_usuario('".$postdata."' , '".$ruta."')";
 
 if (pg_send_query($con, $sql_query)) {
     $res=pg_get_result($con);
