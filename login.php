@@ -1,7 +1,7 @@
 <?php 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
-include "conexion.php";
+include "./conexion.php";
 $postdata = file_get_contents("php://input"); 
 
 $sql_query = "SELECT public.ft_login('".$postdata."')";
