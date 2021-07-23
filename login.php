@@ -4,9 +4,6 @@ header("Access-Control-Allow-Headers: *");
 include "conexion.php";
 $postdata = file_get_contents("php://input"); 
 
-$nombre = $_GET["nombre"];
-$contra = $_GET["contra"];
-
 $query = "SELECT public.ft_login('".$postdata."')";
 
 if (pg_send_query($con, $sql_query)) {
