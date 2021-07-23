@@ -11,8 +11,9 @@ if (pg_send_query($con, $sql_query)) {
       $state = pg_result_error_field($res, PGSQL_DIAG_SQLSTATE);
       if ($state==0) {
             $datos = pg_fetch_all($res);
-            $variable = $datos[0]["ft_insertar_usuario"]; 
-            echo $variable ;   
+            $variable = (boolean)$datos[0]["ft_insertar_usuario"];
+            $resultado = array('estado' => $variable);
+            echo json_encode($resultado) ;    
             }
       else {
         // some error happened
