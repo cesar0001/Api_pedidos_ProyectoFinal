@@ -6,7 +6,7 @@ $request = json_decode($postdata);
 $imagen = $request->url_foto;
 
 $idImagen = uniqid();
-$folderPath = "./imagenes/";
+$folderPath = "../imagenes/";
 $image_parts = explode(";base64,", $imagen);
 $image_type_aux = explode("image/", $image_parts[0]);
 $image_type = $image_type_aux[1];
