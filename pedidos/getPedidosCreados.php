@@ -1,5 +1,6 @@
 <?php 
-
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
 include "../conexion.php";
 
 $postdata = file_get_contents("php://input"); 
